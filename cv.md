@@ -1,8 +1,6 @@
 # LONYORI EMMANUEL RAPHAEL OLE-MEILUDIE
-
 **Location:** Arusha, Tanzania | **Email:** lonyoriole@gmail.com | **Phone:** +255 704 661822  
-**GitHub Portfolio:** https://github.com/lonyoriconsulting-maker
-**LinkedIn Profile:** https://linkedin.com/lonyori-ole-meilud24
+**GitHub Portfolio:** https://github.com/lonyoriconsulting-maker | **LinkedIn:** https://linkedin.com/in/lonyori-ole-meilud24
 
 ---
 
@@ -29,9 +27,30 @@ High-achieving **Computer and Information Management Graduate (3.7 GPA)** specia
 * **Driver Scorecard Analytics:** Built a database query framework that reviews historical logs, counts violations, and computes an automated safety grade (A–F) for fleet operators to track driver behavior.
 
 ### 2. Telematics Infrastructure Project: lero-fleet-api (Previous)
-* **Code Repository Link:** https://github.com/lonyoriconsulting-maker
+* **Code Repository Link:** https://github.com/lonyoriconsulting-maker/lero-fleet-api
 * **Core Architecture:** Engineered a backend routing interface designed to capture raw GPS and OBD-II vehicle hardware packets.
 * **Data Parsing:** Developed core scripts to transform telemetry device inputs into structured JSON payloads for legacy database logging systems.
+
+---
+
+## PROFESSIONAL EXPERIENCE
+
+### Independent Telematics Specialist & Tech Consultant
+* **Lonyori Consulting / Self-Employed** — Arusha, Tanzania | January 2022 – Present
+* Engineered a unified telematics calculation engine using a modern DevOps pipeline (WSL Linux, Git branching, and SQLite logging) to automate field tracking logic.
+* Built localized tracking scripts that automatically parse real-time vehicle streams to flag speeding violations, calculate fuel siphoning drops, and enforce bounding-box geofences.
+
+### IT/ICT Instructor & Assistant Head of Department
+* **St. Joseph’s College, Institute of Business and Management** — Morogoro, Tanzania | March 2018 – October 2020
+* Served as Assistant Head of the ICT Department, managing technical staff, optimizing departmental workflows, and fostering cross-functional teamwork.
+* Trained students in core IT infrastructure, computer programming, IT security networks, operating systems, and modern web technologies.
+* Developed rigorous course materials and technical assessments while providing advanced hands-on technical support to students and staff.
+
+### Operations & Business Systems Manager
+* **Three Brothers Guest House** — Morogoro, Tanzania | November 2016 – July 2018
+* Supervised daily commercial operations, managed resource allocations, and maintained rigorous inventory data tracking logs to maintain profit margins.
+* Implemented strategic growth initiatives, executing the end-to-end launch and integration of an annex restaurant to diversify revenue streams.
+* Audited local vendor accounts, managed daily financial statements, and provided comprehensive technical IT, front-desk, and networking support.
 
 ---
 
@@ -46,3 +65,25 @@ High-achieving **Computer and Information Management Graduate (3.7 GPA)** specia
 ## LANGUAGES
 * **English:** Professional Working Proficiency (Fluent written and spoken)
 * **Swahili:** Native / Bilingual Proficiency
+
+---
+
+## REFEREES
+
+### 1. Mr. Tom Mushi
+* **Title:** ICT Officer (Nelson Mandela Institution) / Consulting & Systems Integration Partner
+* **Organization:** LERO Consulting Alliance — Arusha, Tanzania
+* **Cell:** +255 719 084 600 | **Email:** mushitum5@gmail.com
+* **Relationship:** Strategic business and technology collaborator who co-audited my telemetry streams, Linux development pipeline environments, and data science scripts.
+
+### 2. Mr. Sali Ibrahim
+* **Title:** Registrar
+* **Institution:** St. Joseph’s College, The Institute of Business and Management — Morogoro, Tanzania
+* **Cell:** +255 674 673 262 / +255 615 073 262 | **Email:** sallyibrahimu@gmail.com
+* **Relationship:** Institutional director who can verify my leadership as Assistant Head of Department, curriculum development, and enterprise technical support operations.
+
+### 3. Mr. Joshua Kingu
+* **Title:** Instructor, Electrical Installation and Automation
+* **Institution:** VETA Kipawa — Dar es Salaam, Tanzania
+* **Cell:** +255 754 825 403
+* **Relationship:** Industrial automation reference who can validate my structural proficiency in hardware-to-software integrations, network logic routing, and algorithmic problem-solving.
