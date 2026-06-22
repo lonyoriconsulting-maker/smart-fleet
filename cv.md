@@ -36,7 +36,7 @@ High-achieving **Computer and Information Management Graduate (3.7 GPA)** specia
 ## PROFESSIONAL EXPERIENCE
 
 ### Independent Telematics Specialist & Tech Consultant
-* **Lonyori Consulting / Self-Employed** — Arusha, Tanzania | January 2022 – Present
+* **LERO Consulting Alliance/ Self-Employed** — Arusha, Tanzania | January 2022 – Present
 * Engineered a unified telematics calculation engine using a modern DevOps pipeline (WSL Linux, Git branching, and SQLite logging) to automate field tracking logic.
 * Built localized tracking scripts that automatically parse real-time vehicle streams to flag speeding violations, calculate fuel siphoning drops, and enforce bounding-box geofences.
 
