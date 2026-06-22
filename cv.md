@@ -1,6 +1,8 @@
 # LONYORI EMMANUEL RAPHAEL OLE-MEILUDIE
+
 **Location:** Arusha, Tanzania | **Email:** lonyoriole@gmail.com | **Phone:** +255 704 661822  
-**GitHub Portfolio:** [://github.com](https://://github.com) | **LinkedIn:** [://linkedin.com](https://www.://linkedin.com)
+**GitHub Portfolio:** https://github.com/lonyoriconsulting-maker
+**LinkedIn Profile:** https://linkedin.com/lonyori-ole-meilud24
 
 ---
 
@@ -20,14 +22,14 @@ High-achieving **Computer and Information Management Graduate (3.7 GPA)** specia
 ## TECHNICAL PROJECTS PORTFOLIO
 
 ### 1. Enterprise Hybrid Fleet Telematics & Analytics System (Current)
-* **Code Repository:** [://github.com/smart-fleet](https://://github.com/smart-fleet)
+* **Code Repository Link:** https://github.com/lonyoriconsulting-maker/smart-fleet
 * **Ingestion & Safety Automation:** Engineered a Node.js data pipeline that parses live tracking streams, automatically flagging commercial vehicle speed violations over the Tanzanian heavy-duty vehicle limit of 80 km/h.
 * **Fuel Loss Engine:** Developed a state-tracking algorithm to calculate fuel consumption discrepancies. Automatically detects fuel siphoning anomalies by identifying sharp percentage drops while the asset is stationary.
 * **Geospatial Geofencing:** Designed a mathematical bounding check to identify unauthorized vehicle exits outside assigned city parameters (simulated for the Arusha municipality perimeter).
 * **Driver Scorecard Analytics:** Built a database query framework that reviews historical logs, counts violations, and computes an automated safety grade (A–F) for fleet operators to track driver behavior.
 
 ### 2. Telematics Infrastructure Project: lero-fleet-api (Previous)
-* **Code Repository:** [://github.com](https://://github.com)
+* **Code Repository Link:** https://github.com/lonyoriconsulting-maker
 * **Core Architecture:** Engineered a backend routing interface designed to capture raw GPS and OBD-II vehicle hardware packets.
 * **Data Parsing:** Developed core scripts to transform telemetry device inputs into structured JSON payloads for legacy database logging systems.
 
