@@ -1,78 +1,92 @@
 const sqlite3 = require('sqlite3').verbose();
 
-// 1. Establish database connection to a local file cabinet called 'fleet.db'
+// 1. Establish Database Connection Safely
 const db = new sqlite3.Database('./fleet.db', (err) => {
     if (err) return console.error("❌ Database connection failed:", err.message);
-    console.log("💾 SUCCESS: Connected to local SQLite DB inside WSL.");
+    console.log("💾 Connected to SQLite DB on branch: feature/fuel-theft-detector");
+    
+    // Trigger database initialization after we successfully connect
+    initializeDatabaseStructure();
 });
 
-// 2. Build our database structure
-db.serialize(() => {
-    // Create vehicle database table
-    db.run(`
-        CREATE TABLE IF NOT EXISTS vehicles (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            plate_number TEXT UNIQUE,
-            driver_name TEXT,
-            status TEXT DEFAULT 'active'
-        )
-    `);
+// 2. Initialize and enforce database structure first
+function initializeDatabaseStructure() {
+    db.serialize(() => {
+        db.run(`
+            CREATE TABLE IF NOT EXISTS vehicles (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                plate_number TEXT UNIQUE,
+                driver_name TEXT,
+                status TEXT DEFAULT 'active'
+            )
+        `);
 
-    // Create live GPS tracking database table
-    db.run(`
-        CREATE TABLE IF NOT EXISTS telemetry_logs (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            plate_number TEXT,
-            latitude REAL,
-            longitude REAL,
-            speed_kmh REAL,
-            fuel_level_percent INTEGER,
-            recorded_at TEXT
-        )
-    `);
+        db.run(`
+            CREATE TABLE IF NOT EXISTS telemetry_logs (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                plate_number TEXT,
+                latitude REAL,
+                longitude REAL,
+                speed_kmh REAL,
+                fuel_level_percent INTEGER,
+                recorded_at TEXT
+            )
+        `, (err) => {
+            if (err) return console.error("❌ Table creation failed:", err.message);
+            
+            // Database setup is now verified and ready! Run the calculations safely.
+            executeFleetCalculations();
+        });
+    });
+}
 
-    // Pre-populate our inventory with one test truck in Arusha
-    db.run(`INSERT OR IGNORE INTO vehicles (plate_number, driver_name) VALUES ('T 123 ABC', 'John Doe')`);
-});
+// 3. Operational Data Variables
+const lastKnownFuelState = {
+    plateNumber: "T 123 ABC",
+    fuelLevelPercent: 74,
+    timestamp: new Date(Date.now() - 10000).toISOString()
+};
 
-// 3. Simulate a raw data packet coming from a tracker in Arusha
-const incomingGpsStream = {
+const incomingLiveStream = {
     plateNumber: "T 123 ABC",
     latitude: -3.3731, 
     longitude: 36.6853,
-    speedKmh: 85.5, // Tanzanian truck legal speed limit is 80 km/h
-    fuelLevelPercent: 74,
+    speedKmh: 0, 
+    fuelLevelPercent: 62, 
     timestamp: new Date().toISOString()
 };
 
-// 4. Processing Core Engine (Your Hybrid Tech/Logistics Hat)
-function processIncomingData(data) {
-    console.log(`\n📡 Live Packet Received for Truck: ${data.plateNumber}`);
+// 4. Hybrid Calculation Engine Execution Function
+function executeFleetCalculations() {
+    console.log(`\n📡 Analyzing Live Telemetry Stream for Truck: ${incomingLiveStream.plateNumber}`);
 
-    // LOGISTICS RULE: Speed Threshold Violation Alert
-    if (data.speedKmh > 80) {
-        console.log(`⚠️ OPERATIONAL ALERT: Truck ${data.plateNumber} is SPEEDING at ${data.speedKmh} km/h!`);
+    // Operations Check
+    const fuelLoss = lastKnownFuelState.fuelLevelPercent - incomingLiveStream.fuelLevelPercent;
+
+    if (incomingLiveStream.speedKmh === 0 && fuelLoss >= 5) {
+        console.log(`🚨 OPERATIONAL ALERT: SUSPECTED FUEL THEFT CRITICAL!`);
+        console.log(`   Truck ${incomingLiveStream.plateNumber} lost ${fuelLoss}% fuel while stationary inside yard!`);
+        console.log(`   Dispatching security protocols immediately...`);
+    } else {
+        console.log(`⛽ Fuel Burn Status: Consumption rate normal.`);
     }
 
-    // ICT RULE: Log data cleanly into the file cabinet database
+    // Save Record to Database
     const sqlQuery = `INSERT INTO telemetry_logs (plate_number, latitude, longitude, speed_kmh, fuel_level_percent, recorded_at) VALUES (?, ?, ?, ?, ?, ?)`;
     
-    db.run(sqlQuery, [data.plateNumber, data.latitude, data.longitude, data.speedKmh, data.fuelLevelPercent, data.timestamp], function(err) {
-        if (err) return console.error("❌ SQL Insert Error:", err.message);
+    db.run(sqlQuery, [incomingLiveStream.plateNumber, incomingLiveStream.latitude, incomingLiveStream.longitude, incomingLiveStream.speedKmh, incomingLiveStream.fuelLevelPercent, incomingLiveStream.timestamp], function(err) {
+        if (err) return console.error("❌ Database Entry Error:", err.message);
         console.log(`💾 DATA LOGGED: Telemetry saved to row ID ${this.lastID}.`);
-        printSavedRecords();
+        printLogs();
     });
 }
 
-// 5. Read from our database to verify it saved perfectly
-function printSavedRecords() {
-    db.all(`SELECT * FROM telemetry_logs`, [], (err, rows) => {
+// 5. Read Database logs
+function printLogs() {
+    db.all(`SELECT * FROM telemetry_logs ORDER BY id DESC LIMIT 2`, [], (err, rows) => {
         if (err) throw err;
-        console.log("\n查看 📊 STORED DATABASE ENTRIES:");
+        console.log("\n📊 LAST TWO LOGS IN DATABASE:");
         console.log(rows);
-        db.close(); // Safely shut down database connection
+        db.close(); // Close connection cleanly
     });
 }
-
-// Execute the application
-processIncomingData(incomingGpsStream);
